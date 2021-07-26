@@ -25,10 +25,10 @@ public class EventoController {
   @RequestMapping(value="/cadastrarEvento", method = RequestMethod.POST)
   public String form(Evento evento){
       er.save(evento);
-      return "redirect:/cadastrarvento"; //direciador pra roda get
+      return "redirect:/cadastrarEvento"; //direciador pra roda get
   }
 
-  @RequestMapping("/evento")
+  @RequestMapping("/eventos")
   public ModelAndView listaEventos(){
     ModelAndView mv = new ModelAndView("index");
     Iterable<Evento> eventos = er.findAll();

@@ -5,22 +5,43 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+ <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>Home | EventosApp</title>
 </head>
 <body>
-  <h1>Lista de Eventos</h1>
-  
-    <p><a href="/cadastrarEvento">Cadastrar Evento</a></p>
-    <div th:each="evento : ${eventos}">
-      <div class="row">
-        <p><span th:text="${evento.nome}"></span></p>
-        <p><span th:text="${evento.local}"></span></p>
-        <p><span th:text="${evento.data}"></span></p>
-        <p><span th:text="${evento.horario}"></span></p>
+  <div style= " margin: 0 auto;
+  width: 1000px;">
+  <h1  style="text-align:center">Lista de Eventos</h1>
+  <br>
+    <p>
+      <a href="/cadastrarEvento" class="waves-effect blue btn">
+        <i class="material-icons left">add_circle_outline</i>Cadastrar Evento</a>
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Local</th>
+            <th>Data</th>
+            <th>Horario</th>
+          </tr>
+          <tbody>
+            <tr th:each="evento : ${eventos}">        
+              <td><span th:text="${evento.nome}"></span></td>
+              <td><span th:text="${evento.local}"></span></td>
+              <td><span th:text="${evento.data}"></span></td>
+              <td><span th:text="${evento.horario}"></span></td>
 
+            </tr>
+        </tbody>
+        </div>
+      </thead>
+  </table>
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
       </div>
-
-    </div>
-  
 </body>
 </html>
