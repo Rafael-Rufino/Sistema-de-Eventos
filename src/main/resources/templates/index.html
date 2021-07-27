@@ -17,7 +17,7 @@
   <h1  style="text-align:center">Lista de Eventos</h1>
   <br>
     <p>
-      <a href="/cadastrarEvento" class="waves-effect blue btn">
+      <a href="/cadastrarEvento" class="waves-effect green btn">
         <i class="material-icons left">add_circle_outline</i>Cadastrar Evento</a>
       </p>
       <table>
@@ -28,7 +28,7 @@
             <th>Data</th>
             <th>Horario</th>
           </tr>
-          <tbody>
+          <tbody style="font-weight: bold;">
             <tr th:each="evento : ${eventos}">        
               <td><a th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.codigo)).build()}"><span th:text="${evento.nome}"></span></a></td>
               <td><span th:text="${evento.local}"></span></td>

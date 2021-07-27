@@ -14,20 +14,27 @@
 <body>
   <div style= " margin: 0 auto;
   width: 1000px;">
-  <h1  style="text-align:center">Detalhes Eventos</h1>
+  <h1  style="text-align:center">Detalhes do Eventos</h1>
   <br>
     <p>
-      <a href="/evento" class="waves-effect blue btn">
-        <i class="material-icons left">add_circle_outline</i>Lista de Eventos</a>
+      <a href="/eventos" class="waves-effect green btn">
+        <i class="material-icons left">add_circle_outline</i>
+      Lista de Eventos
+      </a>
     </p>
       <div th:each="evento : ${evento}">
-          <div class="row">        
+          <div class="row" style="font-weight: bold;">        
             <p>Nome: <span th:text="${evento.nome}"></span></a></p>
             <p>Local: <span th:text="${evento.local}"></span></p>
             <p>Data: <span th:text="${evento.data}"></span></p>
             <p>Horario: <span th:text="${evento.horario}"></span></p>
-            
           </div>
+
+          <form method="post" style="font-weight: bold;">
+            Nome: <input type="text" value="" name="nomeConvidado">
+            RG: <input type="text" value="" name="rg">
+            <button class="waves-effect blue btn" type="submit">Adicionar</button>
+          </form>
     </div>
       
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
