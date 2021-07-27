@@ -1,7 +1,9 @@
 package com.eventoapp.eventoapp.controllers;
 
 
+import com.eventoapp.eventoapp.models.Convidado;
 import com.eventoapp.eventoapp.models.Evento;
+import com.eventoapp.eventoapp.repository.ConvidadoRepository;
 import com.eventoapp.eventoapp.repository.EventoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class EventoController {
   //injeçao de dependencia da interface
   @Autowired
   private EventoRepository er; //variavel
+
+  @Autowired
+  private ConvidadoRepository cr;
 
 
   @RequestMapping(value="/cadastrarEvento", method = RequestMethod.GET)
@@ -37,11 +42,20 @@ public class EventoController {
     return mv;
   }
 
-  @RequestMapping("{codigo}")
+  @RequestMapping(value="/{codigo}", method=RequestMethod.GET)
   public ModelAndView detalhesEvento(@PathVariable("codigo") long codigo){
     Evento evento = er.findByCodigo(codigo);
     ModelAndView mv = new ModelAndView("evento/detalhesEvento"); 
     mv.addObject("evento", evento);
     return mv;
+  }
+
+  @RequestMapping(value="/{codigo}", method=RequestMethod.POST)
+  public String detalhesEventoPost(@PathVariable("codigo") long codigo, Convidado convidado){
+    Evento evento = er.findByCodigo(codigo);
+    convidado.setEvento(evento);
+    cr.save(convidado);
+    
+    return "redirect:/{codigo}";
   }
 }
