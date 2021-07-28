@@ -26,12 +26,12 @@ public class EventoController {
   @Autowired
   private ConvidadoRepository cr;
 
-
+  //mostra formulario
   @RequestMapping(value="/cadastrarEvento", method = RequestMethod.GET)
   public String form(){
     return "evento/formEvento";
   }
-
+  //cadastrar Evento
     @RequestMapping(value="/cadastrarEvento", method=RequestMethod.POST)
     public String form(@Valid Evento evento, BindingResult result, RedirectAttributes attributes){
       if(result.hasErrors()){
@@ -44,7 +44,7 @@ public class EventoController {
       return "redirect:/cadastrarEvento";
     }
     
-
+//listar eventos
   @RequestMapping("/eventos")
   public ModelAndView listaEventos(){
     ModelAndView mv = new ModelAndView("index");
@@ -64,6 +64,29 @@ public class EventoController {
     return mv;
   }
 
+  //deletar evento 
+  @RequestMapping("/deletarEvento")
+  public String deletarEvento(long codigo) {
+    Evento evento = er.findByCodigo(codigo);
+    er.delete(evento);
+    return "redirect:/eventos";
+
+  }
+
+    //deletar convidados
+    @RequestMapping("/deletarConvidado")
+    public String deletarConvidado(String rg) {
+      Convidado convidado = cr.findByRg(rg);
+      cr.delete(convidado);
+
+      Evento evento = convidado.getEvento();
+      long codigoLong = evento.getCodigo();
+      String codigo = "" + codigoLong;
+      return "redirect:/" + codigo;
+      
+    }
+
+  //detalhes evento
   @RequestMapping(value="/{codigo}", method=RequestMethod.POST)
   public String detalhesEventoPost(@PathVariable("codigo") 
   long codigo, @Valid Convidado convidado, BindingResult result,
