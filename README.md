@@ -42,7 +42,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 - [Spring-Boot]
 - [Postgres]
 - [Thymeleaf]
-- [Materalize]
+- [Materialize]
 
 
 
